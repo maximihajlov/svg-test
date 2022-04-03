@@ -17,11 +17,11 @@
 <body>
 <label>
     Change Height of SVG:
-    <input id='inputHeight' type="text" value="100">
+    <input id='inputHeight' type="text" value="1170">
 </label>
 <p id="error">Not valid number</p>
 <main>
-    <svg height="100" width="100" viewBox="0 0 1370 1170">
+    <svg height="500" width="500" viewBox="0 0 1370 1170">
         <circle cx="685" cy="585" r="550" stroke="black" stroke-width="50" fill="red"/>
     </svg>
 </main>
@@ -34,7 +34,9 @@
         const data = parseFloat(input.value)
         if (!isNaN(data)) {
             error.style.display = 'none'
-            svg.setAttribute('height', data.toString())
+            const viewBox = svg.getAttribute('viewBox').split(' ')
+            viewBox[3] = input.value
+            svg.setAttribute('viewBox', viewBox.join(' '))
         } else {
             error.style.display = 'block'
         }
