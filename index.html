@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG manipulations test</title>
+    <style>
+        svg {
+            background: darkgreen;
+        }
+
+        #error {
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<label>
+    Change Height of SVG:
+    <input id='inputHeight' type="text" value="100">
+</label>
+<p id="error">Not valid number</p>
+<main>
+    <svg height="100" width="100" viewBox="0 0 1370 1170">
+        <circle cx="685" cy="585" r="550" stroke="black" stroke-width="50" fill="red"/>
+    </svg>
+</main>
+<script type="application/javascript">
+    const input = document.getElementById('inputHeight')
+    const error = document.getElementById('error')
+
+    const svg = document.querySelector('svg')
+    input.addEventListener('input', () => {
+        const data = parseFloat(input.value)
+        if (!isNaN(data)) {
+            error.style.display = 'none'
+            svg.setAttribute('height', data.toString())
+        } else {
+            error.style.display = 'block'
+        }
+    })
+</script>
+</body>
+</html>
